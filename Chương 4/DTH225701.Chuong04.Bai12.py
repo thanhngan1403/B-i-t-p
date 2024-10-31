@@ -1,6 +1,6 @@
 def oscillate(start, end):
     result = []
-    for i in range(start, end + 1):
+    for i in range(start, end ):
         if i !=0 or i==0:
             result.append(i)
             result.append(-i)
