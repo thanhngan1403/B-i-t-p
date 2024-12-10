@@ -1,0 +1,13 @@
+[
+    {
+        "ma_lop": 1,
+        "ten": "DH23TH2",
+        "sinh_vien": [
+            {
+                "ma_sinh_vien": 1,
+                "ten": "Nguyễn Thanh Ngân",
+                "nam_sinh": 2004
+            }
+        ]
+    }
+]

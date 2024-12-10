@@ -29,6 +29,18 @@ def trans():
     elif x.get() == 1:
         src_lang = 'en'
         dest_lang = 'vi'
+    elif x.get()==2:
+        src_lang='vi'
+        dest_lang='ko'
+    elif x.get() == 3:
+         src_lang = 'ko' 
+         dest_lang = 'vi' 
+    elif x.get() == 4: 
+        src_lang = 'en' 
+        dest_lang = 'ko' 
+    elif x.get() == 5: 
+        src_lang = 'ko' 
+        dest_lang = 'en'
     else:
         pass
     in_put = text_input.get(1.0, END)
@@ -41,10 +53,21 @@ def trans():
 def translate_text(text):
     if is_english(text):
         tts = gTTS(text=text, lang='en')
-    else:
+    elif is_vietnamese(text):
         tts = gTTS(text=text, lang='vi')
+    else:
+        tts = gTTS(text=text, lang='ko')
+
     tts.save("output.mp3")
     os.system("start output.mp3")
+    
+def is_vietnamese(text):
+    # Giả định rằng văn bản tiếng Việt có các ký tự đặc biệt như ă, â, ê, ô, ơ, ư, đ
+    vietnamese_chars = "ăâêôơưđ"
+    for char in vietnamese_chars:
+        if char in text:
+            return True
+    return False
 
 # Hàm kiểm tra xem văn bản có phải là tiếng Anh không
 def is_english(text):
@@ -79,7 +102,8 @@ frame_option = LabelFrame(root, text="Options")
 frame_option.place(x=40, y=350)
 
 # Code tạo ra nút chọn ngôn ngữ (radiobutton) 
-lang = ["Vietnamese to English", "English to Vietnamese"]
+lang = ["Vietnamese to English", "English to Vietnamese","Vietnamese to Korean",
+         "Korean to Vietnamese", "English to Korean", "Korean to English"]
 x = IntVar()
 x.set("0")
 
@@ -98,6 +122,6 @@ read_input_button = Button(root, text="Đọc ngôn ngữ nhập",width=15,
 read_input_button.place(x=250,y=432)
 read_output_button = Button(root, text="Đọc ngôn ngữ xuất",width=15, 
                             command=lambda: translate_text(text_output.get("1.0", END)))
-read_output_button.place(x=60,y=432)
+read_output_button.place(x=252,y=468)
 
 root.mainloop()
